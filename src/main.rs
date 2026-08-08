@@ -8,7 +8,7 @@ const DEFAULT_HOST: &str = "127.0.0.1";
 const DEFAULT_PORT: u16 = 25565;
 const DEFAULT_ATTEMPTS: u32 = 5;
 const DEFAULT_ATTEMPT_DELAY: f64 = 5.0;
-const DEBUG_MESSAGES: bool = false;
+const DEFAULT_DEBUG_MESSAGES: bool = false;
 
 #[tokio::main]
 async fn main() {
@@ -29,7 +29,7 @@ async fn main() {
     let debug_messages = env::var("HEALTHCHECK_DEBUG_MESSAGES")
         .ok()
         .and_then(|value| value.parse::<bool>().ok())
-        .unwrap_or(DEBUG_MESSAGES);
+        .unwrap_or(DEFAULT_DEBUG_MESSAGES);
 
     match is_minecraft_server_reachable(
         &host,
